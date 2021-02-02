@@ -16,4 +16,4 @@ cd $1
 
 make clean
 make all
-echo "Compiling NXT program done"
+echo "Finished compiling NXT program"

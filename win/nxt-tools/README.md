@@ -3,7 +3,7 @@ The only difference from the latest original one is in `trik_studio_utils{.c,.h}
 # gnuarm
 This is a GNU GCC arm-none-eabi Win32(!) toolchain from ARM
 https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm/downloads
-Just unpack the archive and move everithing into ./gnueabi to have /bin and /arm-none-eabi folders in the ./gnueabi 
+But stripped a little bit. Nevertheless, the original one can be used. Just unpack the downloaded archive and move everything into ./gnueabi to have /bin and /arm-none-eabi folders in the ./gnueabi 
 # mingw64
 This from mingw64/MSys2
 # gnuwin32

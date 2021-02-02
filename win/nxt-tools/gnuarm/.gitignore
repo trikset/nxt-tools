@@ -1,4 +1,7 @@
-﻿/arm-none-eabi
-/bin
-/lib
+﻿!/arm-none-eabi
+/bin/*
+!/bin/arm-none-eabi-gcc.exe
+!/bin/arm-none-eabi-objcopy.exe
+!/bin/arm-none-eabi-as.exe
+!/lib/gcc/arm-none-eabi/**
 /share
