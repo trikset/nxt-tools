@@ -29,7 +29,7 @@ CC       = "$(CROSS)gcc"
 CXX	 = "$(CROSS)g++"
 AS       = "$(CROSS)as"
 AR       = "$(CROSS)ar"
-LD       = "$(CROSS)g++" -nostartfiles
+LD       = "$(CROSS)gcc" -nostartfiles
 OBJCOPY  = "$(CROSS)objcopy"
 
 BIOSFLASH = biosflash.exe
