@@ -44,21 +44,27 @@
 	.extern ecrobot_debug1
 	.extern ecrobot_debug2
 	.global	debug1
+	.type debug1, %function
+	
 	.global	debug2
+	.type debug2, %function
 
 	.text
 	.code	32
 	.align	4
 
+.func debug1
 debug1:
 	stmfd sp!, {r0-r7,lr}
 	bl ecrobot_debug1
 	ldmfd sp!, {r0-r7, r8}
 	bx r8
+.endfunc
 
+.func debug2
 debug2:
 	stmfd sp!, {r0-r7,lr}
 	bl ecrobot_debug2
 	ldmfd sp!, {r0-r7, r8}
 	bx r8
-
+.endfunc

@@ -141,7 +141,8 @@ ECROBOT_SOURCES = \
 	syscalls.c \
 	ecrobot_bluetooth.c \
 	ecrobot_base.c \
-	ecrobot.c
+	ecrobot.c \
+	trik_studio_utils.c
 endif
 
 ################################################################################
@@ -181,9 +182,6 @@ S_RAMSOURCES = \
 CPP_SOURCES = \
 	$(TARGET_CPP_SOURCES)
 
-# using the new linker script
-LDSCRIPT_SOURCE = $(ECROBOT_C_ROOT)/sam7_ecrobot.lds
-
 LIBECROBOT = -lecrobot
 LIBECROBOT_CPP = -lecrobot++
 include $(ECROBOT_ROOT)/tool_gcc.mak
@@ -215,9 +213,9 @@ ROMBIN_TARGET = $(TARGET)_rom.bin
 RAMBIN_TARGET = $(TARGET)_ram.bin
 RXEBIN_TARGET = $(TARGET).rxe
 
-ROM_LDSCRIPT = $(O_PATH)/$(TARGET)_rom.ld
-RAM_LDSCRIPT = $(O_PATH)/$(TARGET)_ram.ld
-RXE_LDSCRIPT = $(O_PATH)/$(TARGET)_rxe.ld
+ROM_LDSCRIPT = $(ECROBOT_ROOT)/ecrobot_rom.ld
+RAM_LDSCRIPT = $(ECROBOT_ROOT)/ecrobot_ram.ld
+RXE_LDSCRIPT = $(ECROBOT_ROOT)/ecrobot_rxe.ld
 
 S_OBJECTS   = $(addprefix $(O_PATH)/,$(S_SOURCES:.s=.o) $(S_RAMSOURCES:.s=.oram))
 C_OBJECTS   = $(addprefix $(O_PATH)/,$(C_SOURCES:.c=.o) $(C_RAMSOURCES:.c=.oram))
@@ -266,20 +264,9 @@ TargetMessage:
 	@echo ""
 	@echo "Assembler sources: $(S_SOURCES) to $(S_OBJECTS)"
 	@echo ""
-	@echo "LD source: $(LDSCRIPT_SOURCE)"
-	@echo ""
 
 .PHONY: BuildMessage
 BuildMessage: TargetMessage EnvironmentMessage
-
-$(RXE_LDSCRIPT): $(LDSCRIPT_SOURCE)
-	sed -e 's/^RXE_ONLY//' -e '/^RAM_ONLY/d' -e '/^ROM_ONLY/d' $< >$@
-
-$(RAM_LDSCRIPT): $(LDSCRIPT_SOURCE)
-	sed -e 's/^RAM_ONLY//' -e '/^ROM_ONLY/d' -e '/^RXE_ONLY/d' $< >$@
-
-$(ROM_LDSCRIPT): $(LDSCRIPT_SOURCE)
-	sed -e 's/^ROM_ONLY//' -e '/^RAM_ONLY/d' -e '/^RXE_ONLY/d' $< >$@
 
 $(RXE_TARGET): $(C_OBJECTS) $(CPP_OBJECTS) $(S_OBJECTS) $(WAV_OBJECTS) $(BMP_OBJECTS) $(SPR_OBJECTS) $(RXE_LDSCRIPT)
 	$(LD) -o $@ $(C_OBJECTS) $(CPP_OBJECTS) $(S_OBJECTS) $(WAV_OBJECTS) $(BMP_OBJECTS) $(SPR_OBJECTS) -T $(RXE_LDSCRIPT) $(LDFLAGS) $(EXTRALIBS)

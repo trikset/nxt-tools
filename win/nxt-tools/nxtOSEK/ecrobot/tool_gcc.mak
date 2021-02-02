@@ -5,32 +5,32 @@
 #===============================================================================
 
 # specify GNU-ARM root directory
-# ifndef GNUARM_ROOT
-GNUARM_ROOT = $(NXT_TOOLS_DIR_POSIX)/gnuarm
-# endif
+ifndef GNUARM_ROOT
+GNUARM_ROOT = C:\Program Files (x86)\GNU Tools ARM Embedded\4.8 2013q4
+endif
 
 # specify NeXTTool root directory
 ifndef NEXTTOOL_ROOT
-NEXTTOOL_ROOT = $(NXT_TOOLS_DIR)/nexttool
+NEXTTOOL_ROOT = /cygdrive/C/cygwin/nexttool
 endif
 
 
 #===============================================================================
 $(VERBOSE).SILENT:
 
-TARGET_PREFIX :=arm-elf
+TARGET_PREFIX :=arm-none-eabi
 
 MKDIR = mkdir -p
 TOUCH = touch
 
 CROSS = $(GNUARM_ROOT)/bin/$(TARGET_PREFIX)-
 
-CC       = $(CROSS)gcc
-CXX	 	 = $(CROSS)g++
-AS       = $(CROSS)as
-AR       = $(CROSS)ar
-LD       = $(CROSS)g++ -nostartfiles
-OBJCOPY  = $(CROSS)objcopy
+CC       = "$(CROSS)gcc"
+CXX	 = "$(CROSS)g++"
+AS       = "$(CROSS)as"
+AR       = "$(CROSS)ar"
+LD       = "$(CROSS)g++" -nostartfiles
+OBJCOPY  = "$(CROSS)objcopy"
 
 BIOSFLASH = biosflash.exe
 APPFLASH  = appflash.exe
@@ -65,9 +65,10 @@ else
 CXX_PATH = $(addprefix -I ,$(CXX_ROOT)) $(addprefix -I ,$(CXX_ROOT)/boost) $(addprefix -I ,$(CXX_ROOT)/util)
 endif
 
+
 CXXFLAGS = -c -fsigned-char -mcpu=arm7tdmi -fno-exceptions \
 	$(C_OPTIMISATION_FLAGS) \
-	-Winline -Wall --param max-inline-insns-single=1000 \
+	-Wall --param max-inline-insns-single=1000 \
 	-fno-common -fno-rtti \
 	-mthumb -mthumb-interwork -ffunction-sections -fdata-sections \
 	$(CXX_PATH) \
@@ -86,16 +87,15 @@ else
 CXX_LIB = $(LIBLEJOSOSEK)
 endif
 
-# Moved C math lib hook (-lm)  to the end of option to make sure to link it. by takashic June 3, 2011
 LDFLAGS = -mthumb -mthumb-interwork -Wl,--allow-multiple-definition -Wl,-Map,$(basename $@).map -Wl,--cref -Wl,--gc-sections \
 	-L$(LIBPREFIX) $(addprefix -L,$(INC_PATH)) \
-	$(addprefix -L,$(CXX_ROOT)) -L$(O_PATH) -L$(O_PATH)/$(LEJOS_PLATFORM_SOURCES_PATH) $(CXX_LIB) $(LIBECROBOT) \
-	$(addprefix -l,$(USER_LIB)) -lm
+	$(addprefix -L,$(CXX_ROOT)) -L$(O_PATH) -L$(O_PATH)/$(LEJOS_PLATFORM_SOURCES_PATH) -lm $(CXX_LIB) $(LIBECROBOT) \
+	$(addprefix -l,$(USER_LIB))
 
 
 ASFLAGS = -mcpu=arm7tdmi -mthumb-interwork $(addprefix -I,$(TOPPERS_INC_PATH))
 
-LINK_ELF = $(LD) -o $@ -Wl,-T,$(filter-out %.o %.oram %owav %.obmp %ospr, $^) $(filter %.o %.oram %owav %.obmp %ospr,$^) $(EXTRALIBS) $(LDFLAGS)
+LINK_ELF = $(LD) -o $@ -Wl,-T,$(filter-out %.o %.oram %owav %.obmp %ospr, $^) $(filter %.o %.oram %owav %.obmp %ospr,$^) $(LDFLAGS) $(EXTRALIBS)
 
 ifdef O_PATH
 %.bin : %.elf

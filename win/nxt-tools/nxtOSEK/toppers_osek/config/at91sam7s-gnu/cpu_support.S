@@ -74,15 +74,32 @@
 
 /*	äOïîåˆäJêÈåæ */
 	.global	dispatch
+	.type dispatch, %function
+	
 	.global	start_dispatch
+	.type start_dispatch, %function
+	
 	.global	exit_and_dispatch
+	.type exit_and_dispatch, %function
+	
 	.global	activate_r
+	
 	.global	_interrupt
+	.type _interrupt, %function
+	
 	.global	dispatch_r
+	
 	.global	disable_int
+	.type disable_int, %function
+	
 	.global	enable_int
+	.type enable_int, %function
+	
 	.global	nop
+	.type nop, %function
+	
 	.global int_return
+	.type int_return, %function
 
 	.text
 	.code	32
@@ -96,6 +113,7 @@
 //            save "dispatcher_r" in the pc saving area in TCB
 //            jump to "dispatcher"
 /////////////////////////////////////////////////////////////////////////////////////////////////
+.func dispatch
 dispatch:
 	stmfd	sp!, {r4-r11, lr} 		//  save the non-distructive registers
 	ldr	r0, =tcxb_sp			//  save sp in the sp saving area in TCB
@@ -107,7 +125,8 @@ dispatch:
 	ldr	r0, =tcxb_pc
 	str	r2, [r0, r1, asl #2]		// tcxb_pc[runtsk] = "dispatcher_r"
 	b	dispatcher			// jump to "dispatcher"
-	
+.endfunc
+
 .align	4
 ////////////////////////////////////////////////////////////////////////////////////////////////
 //      dispacth_r:
@@ -151,6 +170,7 @@ activate_r:
 //             if (PostTaskHook != 0) PosTaskHook();
 //             continue on to "start_dispatch"
 ///////////////////////////////////////////////////////////////////////////////////////////////
+.func exit_and_dispatch
 exit_and_dispatch:
 dispatcher:
 	ldr	r0, =PostTaskHook
@@ -158,6 +178,7 @@ dispatcher:
 	beq	start_dispatch
 	bl	call_posttaskhook
 	//   fall  to start_dispatch
+.endfunc
 	
 /////////////////////////////////////////////////////////////////////////////////////////////////
 //    start_dispatch:
@@ -168,6 +189,7 @@ dispatcher:
 //          if  (PreTaskHook != 0) call_pretaskhook()
 //          continue on to dispatch_task
 //////////////////////////////////////////////////////////////////////////////////////////////////
+.func start_dispatch
 start_dispatch:
 	ldr	r0, =schedtsk			// runtsk = schedtsk
 	ldrb	r0, [r0]
@@ -185,6 +207,7 @@ start_dispatch:
 	beq	dispatch_task
 	bl	call_pretaskhook
 	// fall to "dispatch_task"
+.endfunc
 	
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 //   dispatch_task:  this is called only from start_dispatch 
@@ -289,6 +312,7 @@ ret_int_r:
 //            }
 //            /*fall to "int_from_int"*/
 //////////////////////////////////////////////////////////////////////////////////////////////////////     
+.func _interrupt
 _interrupt:
 	ldr	r1, =callevel
 	ldrb	r1, [r1]
@@ -297,6 +321,7 @@ _interrupt:
 	mov	r9, sp		// save sp in r9
 	ldr	sp, =__system_stack__
 	bic	sp, sp, #7
+.endfunc
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 //  int_from_int:
@@ -347,6 +372,7 @@ int_from_int:
 //         restore destructive and context value holding registers
 //         return from the interrupt
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
+.func int_return
 int_return:
 	@ end of interrupt by doing a write to AIC_EOICR
 	@ just following the leJos convention
@@ -367,18 +393,24 @@ int_return:
 	msr	spsr, r14
 	ldmfd	sp!, {pc}^		@restore pc (lr value) and cpsr (spsr value)
 					@ that is, return from interrupt
+.endfunc
 	
+.func disable_int
 disable_int:
 	msr	cpsr, #0xDF
 	bx	lr
+.endfunc
 	
+.func enable_int
 enable_int:
 	msr	cpsr, #0x5F
 	bx	lr
-	
+.endfunc
+
+.func nop	
 nop:
 	bx	lr
-
+.endfunc
 
 /* íËêîÇÃíËã` */
 .equ TCL_TASK , 1

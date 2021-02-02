@@ -3,6 +3,20 @@
                               Takashi Chikamasa (takashic@users.sourceforge.net)
 ================================================================================
 
+What's new in 3.00 (January 2014)
+=============================
+- Switched version of GNU Tools for ARM Embedded to 4.8-2013-q4-major to be able to use nxtOSEK in MacOS
+- Updated cpu_support.S, debug.S, ecrobot_init.S, init.S and interrupt.s according to 
+Thumb->ARM call and thumb-interwork problem on 4.7 (Applies to 4.8 also)
+https://answers.launchpad.net/gcc-arm-embedded/+question/231518
+
+
+What's new in 3.00b0 (October 2013)
+=============================
+- Switched GCC toolchain from GNU ARM to GNU Tools for ARM Embedded (https://launchpad.net/gcc-arm-embedded)
+- Generate linker scripts statically (SED is not needed anymore)
+Note that the new toolchain seems to work well with only C, but some C++ code does not work as expected.
+
 What's new in 2.18 (January 2013)
 =============================
 - Fixed bugs in PCM sound stream C API and added new functions for PCM sound playback

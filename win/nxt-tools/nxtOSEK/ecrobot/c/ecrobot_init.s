@@ -33,7 +33,8 @@
 
 	.extern main
 
-	.global start	
+	.global start
+.type start, %function
 	.global undef_handler
 	.global swi_handler
 	.global prefetch_abort_handler
@@ -48,6 +49,7 @@
 @ RAM is always at 2MB
 @ 0MB will be flash or RAM depending on the remap state.
 @
+.func start
 start:
 @ Disable interrupts (IRQ and FIQ). Should not have to do this, but lets not assume anything
 	mrs  r0,cpsr
@@ -95,6 +97,7 @@ start:
 	ldr  r0,=0xFFFFFF00
 	ldr  r1,=1
 	str  r1,[r0]
+.endfunc
 
 skip_remap_toggle:
 

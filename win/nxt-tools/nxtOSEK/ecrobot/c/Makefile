@@ -59,7 +59,7 @@ C_LIB_SOURCES = \
 	NxtCam.c \
 	colorsensor.c \
 	osek_hook.c \
-	trik_studio_utils.c \
+	trik_studio_utils.c
 
 C_LIB_RAMSOURCES := \
 	$(LEJOS_PLATFORM_SOURCES) \
