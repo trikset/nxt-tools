@@ -23,6 +23,8 @@ ECROBOT_C_ROOT = $(ECROBOT_ROOT)/c
 vpath %.c $(LEJOSNXJSRC_ROOT) $(TOPPERS_ROOT) $(ECROBOT_ROOT) $(ECROBOT_C_ROOT)
 vpath %.S $(LEJOSNXJSRC_ROOT) $(TOPPERS_ROOT)
 vpath %.s $(LEJOSNXJSRC_ROOT) $(TOPPERS_ROOT) $(ECROBOT_ROOT) $(ECROBOT_C_ROOT)
+#GPATH = $(ECROBOT_ROOT)
+
 
 ################################################################################
 # TOPPERS ATK/JSP specific settings. By default, TOPPERS ATK is configured as 
@@ -126,8 +128,8 @@ ifeq ($(TOPPERS_KERNEL), OSEK_COM)
 endif
 endif
 
-TOPPERS_CFG_SOURCE = ./kernel_cfg.c
-TOPPERS_CFG_HEADER = ./kernel_id.h
+TOPPERS_CFG_SOURCE = kernel_cfg.c
+TOPPERS_CFG_HEADER = kernel_id.h
 
 ################################################################################
 # Embedded Coder Robot(ECRobot) NXT specific settings
@@ -318,11 +320,11 @@ $(TOPPERS_CFG_SOURCE) $(TOPPERS_CFG_HEADER) $(COM_CFG_SOURCE) $(COM_CFG_HEADER) 
 	@echo "Generating OSEK kernel config files from $(TOPPERS_OSEK_OIL_SOURCE)"
 	$(WINECONSOLE) $(TOPPERS_OSEK_ROOT_SG)/sg/sg $(shell cygpath -m -w ${TOPPERS_OSEK_OIL_SOURCE}) \
         -os=ECC2 -com=CCCA -I$(shell cygpath -m -w ${TOPPERS_OSEK_ROOT_SG})/sg/impl_oil -template=$(shell cygpath -m -w 	${TOPPERS_OSEK_ROOT_SG})/sg/lego_nxt.sgt
-else
-$(TOPPERS_CFG_SOURCE) $(TOPPERS_CFG_HEADER) implementation.oil : $(TOPPERS_OSEK_OIL_SOURCE)
-	# @echo "Generating OSEK kernel config files from $(TOPPERS_OSEK_OIL_SOURCE)"
-	# $(WINECONSOLE) $(TOPPERS_OSEK_ROOT_SG)/sg/sg $(shell cygpath -m -w ${TOPPERS_OSEK_OIL_SOURCE}) \
- #        -os=ECC2 -I$(shell cygpath -m -w ${TOPPERS_OSEK_ROOT_SG})/sg/impl_oil -template=$(shell cygpath -m -w ${TOPPERS_OSEK_ROOT_SG})/sg/lego_nxt.sgt
+#else
+#$(TOPPERS_CFG_SOURCE) $(TOPPERS_CFG_HEADER) implementation.oil : $(TOPPERS_OSEK_OIL_SOURCE)
+#	@echo "Generating OSEK kernel config files from $(TOPPERS_OSEK_OIL_SOURCE)"
+#	$(WINECONSOLE) $(TOPPERS_OSEK_ROOT_SG)/sg/sg $(shell cygpath -m -w ${TOPPERS_OSEK_OIL_SOURCE}) \
+#        -os=ECC2 -I$(shell cygpath -m -w ${TOPPERS_OSEK_ROOT_SG})/sg/impl_oil -template=$(shell cygpath -m -w ${TOPPERS_OSEK_ROOT_SG})/sg/lego_nxt.sgt
 endif
 
 
@@ -355,8 +357,8 @@ rxeflash:
 .PHONY: clean
 clean:  
 	@echo "Removing kernel config files"
-	# @rm -f $(TOPPERS_CFG_SOURCE)
-	# @rm -f $(TOPPERS_CFG_HEADER)
+#	@rm -f $(TOPPERS_CFG_SOURCE)
+#	@rm -f $(TOPPERS_CFG_HEADER)
 	@rm -f $(COM_CFG_SOURCE)
 	@rm -f $(COM_CFG_HEADER)
 	@rm -f implementation.oil
