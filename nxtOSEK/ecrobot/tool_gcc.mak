@@ -5,10 +5,8 @@
 #===============================================================================
 
 # specify GNU-ARM root directory
-ifndef GNUARM_ROOT
-# GNUARM_ROOT = C:\Program Files (x86)\GNU Tools ARM Embedded\4.8 2013q4
-# GNUARM_ROOT = /home/maria/Code/trik-studio/installer/nxt-tools/win/nxt-tools/gnuarm/arm-none-eabi
-endif
+#ifndef GNUARM_ROOT
+#endif
 
 # specify NeXTTool root directory
 ifndef NEXTTOOL_ROOT
@@ -27,10 +25,6 @@ TOUCH = touch
 CROSS = $(GNUARM_ROOT)/bin/$(TARGET_PREFIX)
 
 CURRENT_DIR = $(pwd)
-
-# LIBS_ROOT = /home/maria/Code/trik-studio/installer/nxt-tools/win/nxt-tools/gnuarm/arm-none-eabi
-
-
 
 CC       = "$(CROSS)gcc" --sysroot=$(GNUARM_ROOT)
 CXX	 = "$(CROSS)g++"

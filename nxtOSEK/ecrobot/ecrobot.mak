@@ -23,7 +23,7 @@ ECROBOT_C_ROOT = $(ECROBOT_ROOT)/c
 vpath %.c $(LEJOSNXJSRC_ROOT) $(TOPPERS_ROOT) $(ECROBOT_ROOT) $(ECROBOT_C_ROOT)
 vpath %.S $(LEJOSNXJSRC_ROOT) $(TOPPERS_ROOT)
 vpath %.s $(LEJOSNXJSRC_ROOT) $(TOPPERS_ROOT) $(ECROBOT_ROOT) $(ECROBOT_C_ROOT)
-#GPATH = $(ECROBOT_ROOT)
+GPATH = $(ECROBOT_ROOT)
 
 
 ################################################################################
