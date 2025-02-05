@@ -117,32 +117,32 @@ void object_initialize( void )
  * 
  *  Copyright (C) 2006 by Witz Corporation, JAPAN
  * 
- *    L   ìŒ  Ò‚ÍC È‰    (1) `(4)  Ì     CFree Software Foundation 
- *   É‚   ÄŒ  \    Ä‚    GNU General Public License    Version 2  É‹L
- *   q    Ä‚      ð–ž‚    ê‡ ÉŒ   C { \ t g E F A i { \ t g E F A
- *      Ï‚     Ì‚ Ü‚ÞD È‰      j  g p E     E   ÏE Ä”z z i È‰  C
- *     p ÆŒÄ‚Ôj   é‚± Æ‚ð–³  Å‹       D
- *  (1)  { \ t g E F A  \ [ X R [ h ÌŒ` Å—  p    ê‡ É‚ÍC  L Ì’   
- *         \   C   Ì—  p       Ñ‰  L Ì–  ÛØ‹K è‚ª C   Ì‚Ü‚Ü‚ÌŒ` Åƒ\ [
- *       X R [ h   ÉŠÜ‚Ü‚ Ä‚  é‚± ÆD
- *  (2)  { \ t g E F A  C   C u     `   È‚ÇC   Ìƒ\ t g E F A J   ÉŽg
- *       p Å‚   ` ÅÄ”z z    ê‡ É‚ÍC Ä”z z É”    h L       g i   p
- *       Òƒ} j   A   È‚Çj ÉC  L Ì’  ìŒ  \   C   Ì—  p       Ñ‰  L
- *       Ì–  ÛØ‹K   f Ú‚  é‚± ÆD
- *  (3)  { \ t g E F A  C @  É‘g Ý  Þ‚È‚ÇC   Ìƒ\ t g E F A J   ÉŽg
- *       p Å‚  È‚  ` ÅÄ”z z    ê‡ É‚ÍC   Ì‚    ê‚© Ì   ð–ž‚     
- *       ÆD
- *    (a)  Ä”z z É”    h L       g i   p Òƒ} j   A   È‚Çj ÉC  L Ì’ 
- *         ìŒ  \   C   Ì—  p       Ñ‰  L Ì–  ÛØ‹K   f Ú‚  é‚± ÆD
- *    (b)  Ä”z z ÌŒ` Ô‚ C Ê‚É’ ß‚   @ É‚   ÄCTOPPERS v   W F N g  
- *         ñ‚  é‚± ÆD
- *  (4)  { \ t g E F A Ì—  p É‚ è’¼ Ú“I Ü‚  ÍŠÔÚ“I É    é‚¢   È‚é‘¹
- *       Q     C  L   ìŒ  Ò‚    TOPPERS v   W F N g  ÆÓ‚  é‚± ÆD
+ *  ã‹L’˜ìŒ ŽÒ‚ÍCˆÈ‰º‚Ì (1)`(4) ‚ÌðŒ‚©CFree Software Foundation 
+ *  ‚É‚æ‚Á‚ÄŒö•\‚³‚ê‚Ä‚¢‚é GNU General Public License ‚Ì Version 2 ‚É‹L
+ *  q‚³‚ê‚Ä‚¢‚éðŒ‚ð–ž‚½‚·ê‡‚ÉŒÀ‚èC–{ƒ\ƒtƒgƒEƒFƒAi–{ƒ\ƒtƒgƒEƒFƒA
+ *  ‚ð‰ü•Ï‚µ‚½‚à‚Ì‚ðŠÜ‚ÞDˆÈ‰º“¯‚¶j‚ðŽg—pE•¡»E‰ü•ÏEÄ”z•ziˆÈ‰ºC
+ *  —˜—p‚ÆŒÄ‚Ôj‚·‚é‚±‚Æ‚ð–³ž‚Å‹–‘ø‚·‚éD
+ *  (1) –{ƒ\ƒtƒgƒEƒFƒA‚ðƒ\[ƒXƒR[ƒh‚ÌŒ`‚Å—˜—p‚·‚éê‡‚É‚ÍCã‹L‚Ì’˜ì
+ *      Œ •\Ž¦C‚±‚Ì—˜—pðŒ‚¨‚æ‚Ñ‰º‹L‚Ì–³•ÛØ‹K’è‚ªC‚»‚Ì‚Ü‚Ü‚ÌŒ`‚Åƒ\[
+ *      ƒXƒR[ƒh’†‚ÉŠÜ‚Ü‚ê‚Ä‚¢‚é‚±‚ÆD
+ *  (2) –{ƒ\ƒtƒgƒEƒFƒA‚ðCƒ‰ƒCƒuƒ‰ƒŠŒ`Ž®‚È‚ÇC‘¼‚Ìƒ\ƒtƒgƒEƒFƒAŠJ”­‚ÉŽg
+ *      —p‚Å‚«‚éŒ`‚ÅÄ”z•z‚·‚éê‡‚É‚ÍCÄ”z•z‚É”º‚¤ƒhƒLƒ…ƒƒ“ƒgi—˜—p
+ *      ŽÒƒ}ƒjƒ…ƒAƒ‹‚È‚Çj‚ÉCã‹L‚Ì’˜ìŒ •\Ž¦C‚±‚Ì—˜—pðŒ‚¨‚æ‚Ñ‰º‹L
+ *      ‚Ì–³•ÛØ‹K’è‚ðŒfÚ‚·‚é‚±‚ÆD
+ *  (3) –{ƒ\ƒtƒgƒEƒFƒA‚ðC‹@Ší‚É‘g‚Ýž‚Þ‚È‚ÇC‘¼‚Ìƒ\ƒtƒgƒEƒFƒAŠJ”­‚ÉŽg
+ *      —p‚Å‚«‚È‚¢Œ`‚ÅÄ”z•z‚·‚éê‡‚É‚ÍCŽŸ‚Ì‚¢‚¸‚ê‚©‚ÌðŒ‚ð–ž‚½‚·‚±
+ *      ‚ÆD
+ *    (a) Ä”z•z‚É”º‚¤ƒhƒLƒ…ƒƒ“ƒgi—˜—pŽÒƒ}ƒjƒ…ƒAƒ‹‚È‚Çj‚ÉCã‹L‚Ì’˜
+ *        ìŒ •\Ž¦C‚±‚Ì—˜—pðŒ‚¨‚æ‚Ñ‰º‹L‚Ì–³•ÛØ‹K’è‚ðŒfÚ‚·‚é‚±‚ÆD
+ *    (b) Ä”z•z‚ÌŒ`‘Ô‚ðC•Ê‚É’è‚ß‚é•û–@‚É‚æ‚Á‚ÄCTOPPERSƒvƒƒWƒFƒNƒg‚É
+ *        •ñ‚·‚é‚±‚ÆD
+ *  (4) –{ƒ\ƒtƒgƒEƒFƒA‚Ì—˜—p‚É‚æ‚è’¼Ú“I‚Ü‚½‚ÍŠÔÚ“I‚É¶‚¶‚é‚¢‚©‚È‚é‘¹
+ *      ŠQ‚©‚ç‚àCã‹L’˜ìŒ ŽÒ‚¨‚æ‚ÑTOPPERSƒvƒƒWƒFƒNƒg‚ð–ÆÓ‚·‚é‚±‚ÆD
  * 
- *   { \ t g E F A ÍC   ÛØ‚Å’ñ‹Ÿ‚   Ä‚    Ì‚Å‚   D  L   ìŒ  Ò‚ 
- *     TOPPERS v   W F N g ÍC { \ t g E F A ÉŠÖ‚  ÄC   Ì“K p Â”\    
- *   Ü‚ß‚ÄC     È‚ ÛØ‚ s  È‚  D Ü‚  C { \ t g E F A Ì—  p É‚ è’¼
- *   Ú“I Ü‚  ÍŠÔÚ“I É          È‚é‘¹ Q ÉŠÖ‚  Ä‚ C   ÌÓ”C ð•‰‚ È‚  D
+ *  –{ƒ\ƒtƒgƒEƒFƒA‚ÍC–³•ÛØ‚Å’ñ‹Ÿ‚³‚ê‚Ä‚¢‚é‚à‚Ì‚Å‚ ‚éDã‹L’˜ìŒ ŽÒ‚¨
+ *  ‚æ‚ÑTOPPERSƒvƒƒWƒFƒNƒg‚ÍC–{ƒ\ƒtƒgƒEƒFƒA‚ÉŠÖ‚µ‚ÄC‚»‚Ì“K—p‰Â”\«‚à
+ *  ŠÜ‚ß‚ÄC‚¢‚©‚È‚é•ÛØ‚às‚í‚È‚¢D‚Ü‚½C–{ƒ\ƒtƒgƒEƒFƒA‚Ì—˜—p‚É‚æ‚è’¼
+ *  Ú“I‚Ü‚½‚ÍŠÔÚ“I‚É¶‚¶‚½‚¢‚©‚È‚é‘¹ŠQ‚ÉŠÖ‚µ‚Ä‚àC‚»‚ÌÓ”C‚ð•‰‚í‚È‚¢D
  * 
  */
 
